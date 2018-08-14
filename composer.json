@@ -1,0 +1,19 @@
+{
+    "name": "vyalovalexander/antiplagiat-text-checker",
+    "description": "Checking the text for plagiarism",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "vlucas/phpdotenv": "^2.5"
+    },
+    "autoload": {
+        "VyalovAlexander\\AntiplagiatTextChecker\\": "src/"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vyalov Alexander",
+            "email": "vyalov.alexander@gmail.com"
+        }
+    ]
+}
