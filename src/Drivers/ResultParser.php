@@ -26,7 +26,7 @@ abstract class ResultParser implements ResultParserInterface
      * @param string $body
      * @return mixed
      */
-    abstract public function __construct(string $code, string $body);
+    abstract public function parse(string $code, string $body);
 
     /**
      * @return bool

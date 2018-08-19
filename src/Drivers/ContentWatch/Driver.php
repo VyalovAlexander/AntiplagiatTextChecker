@@ -34,7 +34,8 @@ class Driver extends AbstractDriver
 
             ]);
 
-        $resultOfCheck = new Parser($response->getStatusCode(), $response->getBody());
+        $resultOfCheck = new Parser();
+        $resultOfCheck->parse($response->getStatusCode(), $response->getBody());
 
         return $resultOfCheck;
     }

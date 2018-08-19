@@ -6,7 +6,7 @@ use VyalovAlexander\AntiplagiatTextChecker\Drivers\ResultParser;
 
 class Parser extends ResultParser
 {
-    public function __construct(string $code, string $body)
+    public function parse(string $code, string $body)
     {
         if ($code == 200) {
             $result = json_decode(trim($body));

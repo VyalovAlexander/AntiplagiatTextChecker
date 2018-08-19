@@ -65,17 +65,6 @@ class Checker
     }
 
     /**
-     * @param array $ignoredURls
-     * @return Checker
-     */
-    public function addIgnoredURLs(array $ignoredURls): Checker
-    {
-        $this->drivers = array_merge($ignoredURls, $this->drivers);
-
-        return $this;
-    }
-
-    /**
      * @param string $text
      * @return float
      */
