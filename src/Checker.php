@@ -2,37 +2,85 @@
 
 namespace VyalovAlexander\AntiplagiatTextChecker;
 
-use Dotenv\Dotenv;
+use GuzzleHttp\ClientInterface;
 
 class Checker
 {
-    private $driver;
 
-    public function __construct(string $pathToEnvFile)
+    /**
+     * @var array
+     */
+    protected $drivers;
+    /**
+     * @var \GuzzleHttp\ClientInterface;
+     */
+    protected $httpClient;
+    /**
+     * @var DriverInterface
+     */
+    protected $driver;
+
+    /**
+     * @var array
+     */
+    protected $ignoredURL = [];
+
+
+    public function __construct(ClientInterface $client)
     {
-        $dotenv = new Dotenv($pathToEnvFile);
-        $dotenv->load();
-        $dotenv->required(['DRIVER_NAME']);
-        $this->driver = $this->getDriver(getenv('DRIVER'));
+        $this->httpClient = $client;
     }
 
 
-    private function getDriver(string $service): DriverInterface
+    /**
+     * @param string $driverName
+     * @param string $className
+     * @return Checker
+     */
+    public function addDriver(string $driverName, string $className) : Checker
     {
-        switch ($service)
+        $this->drivers[$driverName] = [$className];
+
+        return $this;
+    }
+
+    /**
+     * @param string $driverName
+     * @return Checker
+     * @throws \Exception
+     */
+    public function useDriver(string $driverName) : Checker
+    {
+        if (array_key_exists($driverName, $this->drivers))
         {
-            case 'text.ru':
-                return new TextRuDriver();
-                break;
-            case 'content-watch.ru':
-                return new TextRuDriver();
-                break;
-
+            $class = $this->drivers[$driverName][0];
+            $this->driver = new $class($this->httpClient);
         }
+        else
+        {
+            throw new \Exception('Driver not found');
+        }
+
+        return $this;
     }
 
-    public function check(string $text)
+    /**
+     * @param array $ignoredURls
+     * @return Checker
+     */
+    public function addIgnoredURLs(array $ignoredURls): Checker
     {
+        $this->drivers = array_merge($ignoredURls, $this->drivers);
 
+        return $this;
+    }
+
+    /**
+     * @param string $text
+     * @return float
+     */
+    public function check(string $text): ResultParserInterface
+    {
+        return $this->driver->check($text);
     }
 }

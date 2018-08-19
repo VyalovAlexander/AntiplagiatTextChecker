@@ -8,10 +8,13 @@
 
 namespace VyalovAlexander\AntiplagiatTextChecker;
 
+use GuzzleHttp\ClientInterface;
 
 interface DriverInterface
 {
-    public function check(string $text);
 
-    //public function getResultOfLastCheck() : ResultOfCheckInterface;
+    public function __construct(ClientInterface $client);
+
+    public function check(string $text): ResultParserInterface;
+
 }

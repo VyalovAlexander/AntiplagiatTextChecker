@@ -7,7 +7,9 @@
         "vlucas/phpdotenv": "^2.5"
     },
     "autoload": {
-        "VyalovAlexander\\AntiplagiatTextChecker\\": "src/"
+        "psr-4" : {
+            "VyalovAlexander\\AntiplagiatTextChecker\\": "src/"
+        }
     },
     "license": "MIT",
     "authors": [

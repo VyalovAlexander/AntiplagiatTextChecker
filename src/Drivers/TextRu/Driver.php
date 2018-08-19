@@ -1,19 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexander
- * Date: 14.08.18
- * Time: 15:53
- */
 
-namespace VyalovAlexander\AntiplagiatTextChecker;
+namespace VyalovAlexander\AntiplagiatTextChecker\Drivers\TextRU;
+
+use GuzzleHttp\ClientInterface;
+use VyalovAlexander\AntiplagiatTextChecker\Drivers\AbstractDriver;
+use VyalovAlexander\AntiplagiatTextChecker\ResultParserInterface;
 
 
-class Driver implements DriverInterface
+class Driver extends AbstractDriver
 {
-    public function check(string $text)
+    public function __construct(ClientInterface $client)
     {
-        // TODO: Implement check() method.
+        parent::__construct($client);
+        $this->api_key = getenv('TEXT_RU_API_KEY');
+        $this->url = getenv('TEXT_RU_URL');
     }
+
+    public function check(string $text): ResultParserInterface
+    {
+        $this->client->request();
+    }
+
 
 }
