@@ -25,7 +25,7 @@ class Parser extends ResultParser
                 {
                     foreach ($this->copyscape_xml_data['result'] as $el) {
                         $numOfResults++;
-                        $allpercentmatched += $el['allpercentmatched'];
+                        $allpercentmatched += $el['allpercentmatched'] ?? 0;
                     }
                 }
                 $this->setSuccess(true);
