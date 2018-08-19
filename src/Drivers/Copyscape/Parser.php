@@ -19,17 +19,10 @@ class Parser extends ResultParser
             if (!empty($this->copyscape_xml_data['error'])) {
                 $this->setError('Возникла ошибка: ' . $this->copyscape_xml_data['error']);
             } else {
-                $allpercentmatched = 0;
-                $numOfResults = 0;
-                if(isset($this->copyscape_xml_data['result']))
-                {
-                    foreach ($this->copyscape_xml_data['result'] as $el) {
-                        $numOfResults++;
-                        $allpercentmatched += $el['allpercentmatched'] ?? 0;
-                    }
-                }
+                $querywords = $this->copyscape_xml_data['querywords'];
+                $count = $this->copyscape_xml_data['count'];
                 $this->setSuccess(true);
-                $this->setResult($numOfResults > 0 ? $allpercentmatched / $numOfResults : 0);
+                $this->setResult($querywords > 0 ? $count / $querywords * 100 : 0);
             }
         } else {
             $this->setError('Ошибка ' . $code);
