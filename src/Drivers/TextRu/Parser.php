@@ -1,6 +1,6 @@
 <?php
 
-namespace VyalovAlexander\AntiplagiatTextChecker\Drivers\TextRU;
+namespace VyalovAlexander\AntiplagiatTextChecker\Drivers\TextRu;
 
 use VyalovAlexander\AntiplagiatTextChecker\Drivers\ResultParser;
 

@@ -20,17 +20,15 @@ class Checker
      */
     protected $driver;
 
+
     /**
-     * @var array
+     * Checker constructor.
+     * @param ClientInterface $client
      */
-    protected $ignoredURL = [];
-
-
     public function __construct(ClientInterface $client)
     {
         $this->httpClient = $client;
     }
-
 
     /**
      * @param string $driverName

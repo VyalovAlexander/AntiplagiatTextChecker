@@ -8,11 +8,12 @@
         "phpunit/phpunit": "^6.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^6"
     },
     "autoload": {
         "psr-4" : {
-            "VyalovAlexander\\AntiplagiatTextChecker\\": "src/"
+            "VyalovAlexander\\AntiplagiatTextChecker\\": "src/",
+            "VyalovAlexander\\AntiplagiatTextChecker\\Tests\\": "tests/"
         }
     },
     "license": "MIT",
